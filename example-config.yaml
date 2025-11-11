@@ -1,0 +1,64 @@
+umami:
+  # The absolute Umami URL for collecting events
+  collection_url: "http://localhost:3000/api/send"
+
+  # HTTP timeout for Umami requests in seconds
+  timeout: 5
+
+  # HTTP retries
+  retries: 3
+
+  # How many concurrent HTTP requests are sent to Umami
+  max_requests: 25
+
+  # Ignores certificate errors when connecting to Umami
+  #ignore_tls: true
+
+  # HTTP headers which are added to Umami requests
+  #custom_http_headers:
+  #  MyCustomHeader: "MyCustomValue"
+
+database:
+  # Path to the local umami-importer database
+  path: ./database.db
+
+imports:
+  # A list of import jobs
+  - website:
+      # Website ID (from Umami site settings)
+      id: "12345678-1234-1234-1234-123456789012"
+
+      # Base URL of the website from which you are importing logs
+      # (from Umami site settings)
+      base_url: "https://yourwebsite.com"
+
+    logs:
+      # A list of paths to log file(s) or directories that will be imported
+      paths:
+        - "/var/log/apache2/access.log"
+
+      # Log type (apache, nginx, or custom)
+      #
+      # For both apache and nginx, only the default log format is supported
+      #
+      # For anything else, use "custom" along with the settings
+      # "logs.type_custom_regex" and "logs.type_custom_timestamp"
+      type: apache
+
+      # Regex for parsing custom log lines
+      # Required if logs.type is set to custom
+      #
+      # Make sure to have the named groups: "remote_addr", "timestamp", "url", "user_agent"
+      # Optionally, specify "referrer"
+      #type_custom_regex: ""
+
+      # Golang timestamp string (https://go.dev/src/time/format.go)
+      #
+      # Required if "logs.type" is set to "custom"
+      #type_custom_timestamp: "02 Jan 06 15:04 MST"
+
+      # Only process files with this extension from inside "logs.paths"
+      #include_extension: ".log"
+
+      # Search recursively for files "inside logs.paths"
+      #recursive: true

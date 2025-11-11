@@ -1,0 +1,43 @@
+version: 2
+
+env:
+  - CGO_ENABLED=0
+
+builds:
+  - id: umami-importer
+    main: ./main.go
+    binary: umami-importer
+    ldflags:
+      - -s -w -X "main.version={{.Tag}}"
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      - goos: linux
+        goarch: arm64
+
+upx:
+  - enabled: true
+    goos: 
+      - linux
+      - windows
+    goarch:
+      - amd64
+    compress: best
+
+archives:
+  - 
+    formats: zip
+    name_template: >-
+      umami-importer_
+      {{- if eq .Os "darwin" }}macOS_
+      {{- else if eq .Os "windows"}}Windows_
+      {{- else }}{{ .Os }}_{{ end }}{{ .Arch }}
+    files:
+      - "README.md"
+      - "LICENSE"
+      - "example-config.yaml"
