@@ -22,6 +22,8 @@ jobs:
         uses: crazy-max/ghaction-upx@v3
         with:
           install-only: true
+      - name: Get Tag
+        run: TAG=$(git describe --tags)
       - name: Build with GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
