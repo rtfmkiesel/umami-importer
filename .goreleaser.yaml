@@ -8,7 +8,7 @@ builds:
     main: ./main.go
     binary: umami-importer
     ldflags:
-      - -s -w -X "main.version={{.ENV.Tag}}"
+      - -s -w -X "main.version={{.Tag}}"
     goos:
       - linux
       - windows
