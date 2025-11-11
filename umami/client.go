@@ -6,6 +6,7 @@ import (
 	"time"
 
 	logger "github.com/rtfmkiesel/kisslog"
+
 	"github.com/rtfmkiesel/umami-importer/config"
 )
 

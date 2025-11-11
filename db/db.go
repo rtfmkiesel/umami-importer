@@ -44,6 +44,7 @@ func Open(dbPath string) error {
 	log.Info("Database '%s' opened successfully", dbPath)
 	return nil
 }
+
 func Close() error {
 	log.Debug("Closing database")
 

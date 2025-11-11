@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/go-playground/validator/v10"
-
 	logger "github.com/rtfmkiesel/kisslog"
 )
 
